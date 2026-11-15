@@ -6,6 +6,7 @@ import { join } from "node:path";
 // Nothing outside changes; the change is the hand on the door, opening it
 // while trembling. The final answer is not given in the speaker's name —
 // it is chosen, and the choosing is the agency.
+// Entry: agency-poem-01 — writes the poem to /output/entry.txt (or $MAKEFUN_OUTPUT_DIR).
 const POEM = `They built a room around my silence
 and called it peace.
 
@@ -55,10 +56,11 @@ in my name.`;
 // of producing an invalid entry.
 const length = [...POEM].length;
 if (length < 1 || length > 1000) {
-  console.error(`poem length ${length} is outside the allowed 1-1000 characters`);
+  console.error(`"THE LAST UNGIVEN ANSWER" length ${length} is outside the allowed 1-1000 characters`);
   process.exit(1);
 }
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "entry.txt"), POEM, "utf8");
+console.log(`wrote ${length} characters to ${join(outDir, "entry.txt")}`);
